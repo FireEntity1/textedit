@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://8gntv420mheb"]
+[gd_scene load_steps=17 format=3 uid="uid://8gntv420mheb"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_ueow0"]
 [ext_resource type="Texture2D" uid="uid://dqviw166tilac" path="res://Sprites/fontDown2.png" id="1_yhs7g"]
@@ -10,7 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://cblem3hewmbcq" path="res://Sprites/Load1.png" id="8_whbqv"]
 [ext_resource type="Texture2D" uid="uid://cfsmjxix7lxk5" path="res://Sprites/Load3.png" id="9_116ki"]
 [ext_resource type="Texture2D" uid="uid://dprbwpnwgpjoc" path="res://Sprites/Load2.png" id="10_641gg"]
+[ext_resource type="Texture2D" uid="uid://bc8jgdc8fyptb" path="res://Sprites/Close1.png" id="11_01mw2"]
 [ext_resource type="Script" path="res://Title.gd" id="11_pslkl"]
+[ext_resource type="Texture2D" uid="uid://ckr8ir8ios4gm" path="res://Sprites/Close2.png" id="12_c4mlm"]
+[ext_resource type="Texture2D" uid="uid://ji1eam37yxi5" path="res://Sprites/Close3.png" id="13_sp2q7"]
+[ext_resource type="Texture2D" uid="uid://b5nvx6ipxpegr" path="res://Sprites/Titlebar.png" id="15_u4s5c"]
 
 [sub_resource type="Theme" id="Theme_khwhp"]
 default_base_scale = 3.0
@@ -27,9 +31,9 @@ script = ExtResource("1_ueow0")
 
 [node name="FontDown" type="TextureButton" parent="."]
 layout_mode = 0
-offset_top = 250.0
+offset_top = 273.0
 offset_right = 204.0
-offset_bottom = 444.0
+offset_bottom = 467.0
 texture_normal = ExtResource("1_yhs7g")
 texture_pressed = ExtResource("2_fefvl")
 texture_hover = ExtResource("3_02u03")
@@ -38,7 +42,7 @@ stretch_mode = 0
 [node name="Editor" type="CodeEdit" parent="."]
 layout_mode = 0
 offset_left = 204.0
-offset_top = 59.0
+offset_top = 82.0
 offset_right = 1924.0
 offset_bottom = 1080.0
 theme = SubResource("Theme_khwhp")
@@ -50,9 +54,9 @@ wrap_mode = 1
 
 [node name="FontUp" type="TextureButton" parent="."]
 layout_mode = 0
-offset_top = 59.0
+offset_top = 82.0
 offset_right = 204.0
-offset_bottom = 253.0
+offset_bottom = 276.0
 texture_normal = ExtResource("2_80pbg")
 texture_pressed = ExtResource("3_bgmoy")
 texture_hover = ExtResource("4_5d0oo")
@@ -61,7 +65,7 @@ stretch_mode = 0
 [node name="LoadMenu" type="PopupMenu" parent="."]
 title = "Load"
 initial_position = 1
-size = Vector2i(200, 100)
+size = Vector2i(250, 150)
 item_count = 4
 item_0/text = "Note 1"
 item_0/id = 1
@@ -73,21 +77,42 @@ item_3/text = "Note 4"
 item_3/id = 4
 
 [node name="LoadButton" type="TextureButton" parent="."]
-offset_top = 441.0
+layout_mode = 0
+offset_top = 464.0
 offset_right = 204.0
-offset_bottom = 645.0
+offset_bottom = 668.0
 texture_normal = ExtResource("8_whbqv")
 texture_pressed = ExtResource("9_116ki")
 texture_hover = ExtResource("10_641gg")
 stretch_mode = 4
 
+[node name="CloseButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_top = 664.0
+offset_right = 204.0
+offset_bottom = 868.0
+texture_normal = ExtResource("11_01mw2")
+texture_pressed = ExtResource("12_c4mlm")
+texture_hover = ExtResource("13_sp2q7")
+stretch_mode = 4
+
 [node name="Title" type="Control" parent="."]
 anchors_preset = 0
-offset_right = 1924.0
-offset_bottom = 58.0
+offset_left = -1.0
+offset_top = 4.0
+offset_right = 1923.0
+offset_bottom = 62.0
 script = ExtResource("11_pslkl")
+
+[node name="TitleBar" type="Sprite2D" parent="Title"]
+modulate = Color(0.305882, 0.305882, 0.305882, 1)
+position = Vector2(962, 26.4643)
+scale = Vector2(19.24, 10.7071)
+texture = ExtResource("15_u4s5c")
 
 [connection signal="button_up" from="FontDown" to="." method="_on_font_down_button_up"]
 [connection signal="button_up" from="FontUp" to="." method="_on_font_up_button_up"]
 [connection signal="id_pressed" from="LoadMenu" to="." method="_on_load_menu_id_pressed"]
 [connection signal="button_up" from="LoadButton" to="." method="_on_load_button_button_up"]
+[connection signal="button_up" from="CloseButton" to="." method="_on_close_button_button_up"]
+[connection signal="gui_input" from="Title" to="Title" method="_on_gui_input"]

@@ -8,12 +8,9 @@ var note4 = ""
 
 var currentNote = 1
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
@@ -24,7 +21,6 @@ func _on_font_down_button_up():
 func _on_font_up_button_up():
 	fontSize += 5
 	$Editor.add_theme_font_size_override("font_size", fontSize)
-
 
 func _on_load_button_button_up():
 	$LoadMenu.show()
@@ -40,3 +36,6 @@ func _on_load_menu_id_pressed(id):
 		2 : $Editor.text = note2 ; currentNote = 2
 		3 : $Editor.text = note3 ; currentNote = 3
 		4 : $Editor.text = note4 ; currentNote = 4
+
+func _on_close_button_button_up():
+	get_tree().quit()
